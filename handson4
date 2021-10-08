@@ -1,0 +1,44 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char* argv[]) {
+	 int var1, var2;
+	
+	cout<<"v1:"<<endl;
+	cin>>var1;
+	cout<<"v2:"<<endl;
+	cin>>var2;	
+	
+	register int add;
+	__asm__( "addl %%ebx, %%eax;"
+		 : "=a" (add)
+		 : "a" (var1), "b" (var2)
+        );
+        cout<<"suma = "<<add<<endl;
+    
+    	register int res;
+	__asm__( "subl %%ebx, %%eax;"
+		 : "=a" (res)
+		 : "a" (var1), "b" (var2)
+        );
+        cout<<"resta = "<<res<<endl;
+        
+    	register int mul;
+	__asm__( "imull %%ebx, %%eax;"
+		 : "=a" (mul)
+		 : "a" (var1), "b" (var2)
+        );
+        cout<<"mul = "<<mul<<endl;
+    
+    	register int div;
+	__asm__( "idivl %%ebx, %%eax;"
+		 : "=a" (div)
+		 : "a" (var1), "b" (var2)
+        );
+        cout<<"div = "<<div<<endl;
+        
+	return 0;
+}
